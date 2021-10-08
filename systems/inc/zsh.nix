@@ -33,6 +33,10 @@ in
     }];
 
     initExtra = ''
+      
+      # set NIX_PATH 
+      export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels:$NIX_PATH
+  
       # direnv setup
       eval "$(direnv hook zsh)"
     '';
