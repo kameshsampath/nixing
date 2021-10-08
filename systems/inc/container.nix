@@ -1,4 +1,4 @@
-# Core packages
+# Container packages
 
 { pkgs, ... }:
 
@@ -13,5 +13,6 @@
     podman
     stern
     docker-client
+    minikube
   ];
 }
