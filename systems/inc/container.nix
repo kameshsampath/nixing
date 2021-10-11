@@ -14,5 +14,6 @@
     stern
     docker-client
     minikube
+    argocd
   ];
 }

@@ -7,8 +7,9 @@
   home.packages = with pkgs; [
     go
     gitAndTools.git
-    jdk
+    adoptopenjdk-openj9-bin-16
     nodejs
+    maven
     python39
     yarn
   ];
