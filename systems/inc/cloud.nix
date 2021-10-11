@@ -5,8 +5,9 @@
 {
 
   home.packages = with pkgs; [
-    google-cloud-sdk
     awscli2
+    azure-cli
     kameshsampath.civo
+    google-cloud-sdk
   ];
 }
