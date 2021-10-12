@@ -6,6 +6,7 @@
   environment.systemPackages = [
     pkgs.vim
     pkgs.cachix
+    pkgs.nixpkgs-fmt
   ];
 
   # Auto upgrade nix package and the daemon service.

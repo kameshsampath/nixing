@@ -1,15 +1,7 @@
-let home-manager = (import ./nix/sources.nix).home-manager;
-in
 {
-  # Let Home Manager install and manage itself.
-  programs = {
-    home-manager = {
-      enable = true;
-      path = "${home-manager}";
-    };
-  };
+  programs = { home-manager = { enable = true; }; };
 
   # Import other Nix files
-  imports = [ ./systems/solo-mac/kameshs.nix ];
+  imports = [ ./modules ./users/kameshs.nix ];
 
 }

@@ -5,6 +5,9 @@
     enable = true;
 
     extraConfig = {
+
+      init = { defaultBranch = "main"; };
+
       core = {
         editor = "code -w";
         autocrlf = "input";

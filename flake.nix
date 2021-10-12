@@ -4,12 +4,16 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   # https://nixos.wiki/wiki/Flakes#Output_schema
-  outputs = { self, home-manager, nixpkgs, darwin, ... }:
+  outputs =
+    { self, home-manager, nixpkgs, darwin, pre-commit-hooks, flake-utils, ... }:
 
     {
       # Build darwin flake using:
@@ -22,21 +26,17 @@
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations."skmacsolo".pkgs;
 
-      # Executed by `nix build .#<name>`
-      # packages."x86_64-darwin"."kameshsampath" = import ./pkgs;
-      # packages."x86_64-linux"."kameshsampath" = import ./pkgs;
-      # Default overlay, for use in dependent flakes
-      # overlays = {
-      #  kameshsampath = import ../pkgs { inherit (self) pkgs; };
-      # };
-
       # Home manager configurations
       homeConfigurations = {
         kameshs = home-manager.lib.homeManagerConfiguration {
           configuration = { pkgs, lib, ... }: {
-            imports = [ ./systems/mac/kameshs.nix ];
+            imports = [ ./home.nix ];
             nixpkgs = {
-              overlays = [ ./overlays/my-packages.nix ];
+              overlays = [
+                (self: super: {
+                  kameshsampath = import ./pkgs { inherit (self) pkgs; };
+                })
+              ];
               config = { allowUnfree = true; };
             };
           };
@@ -46,7 +46,27 @@
           username = "kameshs";
         };
       };
+
       kameshs = self.homeConfigurations.kameshs.activationPackage;
       defaultPackage."x86_64-darwin" = self.kameshs;
+
+      # TODO
+      # checks = {
+      #   pre-commit-check = pre-commit-hooks.lib."x86_64-darwin".run {
+      #     src = ./.;
+      #     hooks = {
+      #       shellcheck.enable = true;
+      #       nixpkgs-fmt.enable = true;
+      #       nix-linter.enable = true;
+      #     };
+      #     # generated files
+      #     excludes = [ "^nix/sources\.nix$" ];
+      #   };
+      # };
+
+      # devShell = nixpkgs.legacyPackages."x86_64-darwin".mkShell {
+      #   inherit (self.checks."x86_64-darwin".pre-commit-check) shellHook;
+      # };
+
     };
 }
