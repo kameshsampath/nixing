@@ -22,5 +22,8 @@
     tmux
     tree
     wget
+    zsh
+    zsh-completions
+    nix-zsh-completions
   ];
 }

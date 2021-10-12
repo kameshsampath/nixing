@@ -1,7 +1,6 @@
 { lib, ... }:
 with lib; {
   imports = [
-    ../inc/zsh.nix
     ../../modules
     ../inc/core.nix
     ../inc/container.nix
@@ -15,6 +14,7 @@ with lib; {
     ../inc/tools.nix
     ../inc/vim.nix
     ../inc/vscode.nix
+    ../inc/zsh.nix
   ];
 
   # Home Manager needs a bit of information about you and the

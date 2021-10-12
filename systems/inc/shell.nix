@@ -24,6 +24,7 @@
     gta = "git tag -a -m";
     jxxopts =
       "jxxopts=java -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version";
+    k = "kubectl";
     l = "ls --color=auto -al";
     ll = "ls --color=auto -GFhl";
     ls = "ls --color=auto -GFh";
@@ -42,13 +43,14 @@
   };
 
   env = ''
+
+      # set NIX_PATH 
+      export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels:$NIX_PATH
+
       export PATH=$HOME/bin:$PATH
       export GOPATH=${config.home.homeDirectory}
       export PATH=$HOME/bin:$PATH
-      if [ -d $HOME/.krew/bin ]; then
-        export PATH=$HOME/.krew/bin:$PATH
-      fi
-    export KUBE_EDITOR="code -w";
+      export KUBE_EDITOR="code -w";
       export EDITOR="code -w";
   '';
 

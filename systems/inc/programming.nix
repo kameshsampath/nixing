@@ -7,7 +7,8 @@
   home.packages = with pkgs; [
     go
     gitAndTools.git
-    adoptopenjdk-openj9-bin-16
+    # use java from Graal Java 11
+    graalvm11-ce
     nodejs
     maven
     python39

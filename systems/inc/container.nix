@@ -5,6 +5,8 @@
 {
 
   home.packages = with pkgs; [
+    argocd
+    docker-client
     kind
     kubectl
     kubectx
@@ -12,8 +14,7 @@
     kubernetes-helm
     podman
     stern
-    docker-client
     minikube
-    argocd
+    kameshsampath.kubectl-aliases
   ];
 }

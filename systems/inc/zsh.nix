@@ -12,6 +12,7 @@ in
     enableCompletion = true;
     dotDir = ".config/zsh";
     envExtra = shellConfig.env;
+    completionInit = "autoload -U +X compinit && compinit";
 
     history = {
       expireDuplicatesFirst = true;
@@ -33,12 +34,13 @@ in
     }];
 
     initExtra = ''
-      
-      # set NIX_PATH 
-      export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels:$NIX_PATH
-  
+      source <(kubectl completion zsh)
+
       # direnv setup
       eval "$(direnv hook zsh)"
+
+      # source kubectl aliases
+      source "${pkgs.kameshsampath.kubectl-aliases}/kubectl_aliases"
     '';
 
     oh-my-zsh = {
