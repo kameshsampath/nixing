@@ -50,7 +50,7 @@
       kameshs = self.homeConfigurations.kameshs.activationPackage;
       defaultPackage."x86_64-darwin" = self.kameshs;
 
-      # TODO
+      # TODO #1 - enable pre-commit hooks
       # checks = {
       #   pre-commit-check = pre-commit-hooks.lib."x86_64-darwin".run {
       #     src = ./.;
