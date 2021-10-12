@@ -19,7 +19,7 @@ let
 
   configureKubectlAliases = stdenv.mkDerivation rec {
 
-    inherit pkgs name src meta;
+    inherit name src meta;
 
     phases = " installPhase fixupPhase";
 
