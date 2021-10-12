@@ -46,7 +46,7 @@ in
     oh-my-zsh = {
       enable = true;
       theme = "dracula";
-      custom = builtins.getEnv "HOME" + "/.config/oh-my-zsh";
+      custom = "$HOME/.config/oh-my-zsh";
     };
 
     shellAliases = shellConfig.aliases;
