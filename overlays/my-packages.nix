@@ -1,3 +1,1 @@
-self: _: {
-  kameshsampath = import ../pkgs { inherit (self) pkgs; };
-}
+self: super: { kameshsampath = import ../pkgs { inherit (self) pkgs; }; }

@@ -1,14 +1,22 @@
-{ pkgs ? (import ../nix).nixpkgs-unstable { }, ... }:
+{ config, pkgs, ... }:
 
 {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = [ pkgs.vim pkgs.cachix ];
+  environment.systemPackages = [
+    pkgs.vim
+    pkgs.cachix
+  ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
-  nix.package = pkgs.nixUnstable;
+  nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
   programs.zsh.enable = true;
 
