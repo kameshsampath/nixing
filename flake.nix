@@ -26,6 +26,10 @@
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations."skmacsolo".pkgs;
 
+      # 
+      packages."x86_64-darwin".mypkgs = import ./pkgs;
+      packages."x86_64-linux".mypkgs = import ./pkgs;
+
       # Home manager configurations
       homeConfigurations = {
         kameshs = home-manager.lib.homeManagerConfiguration {
