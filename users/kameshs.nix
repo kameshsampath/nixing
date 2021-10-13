@@ -1,7 +1,6 @@
 {
   imports = [
     # ../../modules
-    ./inc/automation.nix
     ./inc/core.nix
     ./inc/container.nix
     ./inc/cloud.nix

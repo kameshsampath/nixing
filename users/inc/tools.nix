@@ -20,5 +20,6 @@
     jq
     tree
     yamllint
+    terraform
   ];
 }

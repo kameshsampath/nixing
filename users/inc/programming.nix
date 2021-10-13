@@ -12,6 +12,7 @@
     nodejs
     maven
     python39
+    poetry
     yarn
   ];
 }
