@@ -47,9 +47,8 @@
       # set NIX_PATH 
       export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels:$NIX_PATH
 
-      export PATH=$HOME/bin:$PATH
+      export PATH=${config.home.homeDirectory}/.local/bin:/Applications/VirtualBox.app/Contents/MacOS:$PATH
       export GOPATH=${config.home.homeDirectory}
-      export PATH=$HOME/bin:$PATH
       export KUBE_EDITOR="code -w";
       export EDITOR="code -w";
   '';
