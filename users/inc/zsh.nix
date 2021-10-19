@@ -35,6 +35,7 @@ in
 
     initExtra = ''
       source <(kubectl completion zsh)
+      complete -F __start_kubectl k
 
       # direnv setup
       eval "$(direnv hook zsh)"
