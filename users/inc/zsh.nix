@@ -35,7 +35,7 @@ in
 
     initExtra = ''
       
-      path=("${config.home.homeDirectory}/.local/bin" "/Applications/VirtualBox.app/Contents/MacOS" "/Applications/Parallels Desktop.app/Contents/MacOS"  $path)
+      path=("${config.home.homeDirectory}/.local/bin" "/Applications/VirtualBox.app/Contents/MacOS" "/Applications/Parallels Desktop.app/Contents/MacOS"  "/Applications/Docker.app/Content/MacOS" "/Applications/Docker.app/Contents/Resources/bin"  $path)
 
       source <(kubectl completion zsh)
       complete -F __start_kubectl k
@@ -45,6 +45,18 @@ in
 
       # source kubectl aliases
       source "${pkgs.kameshsampath.kubectl-aliases}/kubectl_aliases"
+
+      my_link="${config.home.homeDirectory}/.local/bin/hyperkit"
+
+      if [ -L "$my_link" ]; then
+        if [ ! -e "$my_link" ]; then
+          rm -f "$my_link"
+          ln -s /Applications/Docker.app/Contents/Resources/bin/com.docker.hyperkit "$my_link"
+        fi
+      else
+        ln -s /Applications/Docker.app/Contents/Resources/bin/com.docker.hyperkit "$my_link"
+      fi
+
     '';
 
     oh-my-zsh = {
