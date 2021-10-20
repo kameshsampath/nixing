@@ -34,6 +34,9 @@ in
     }];
 
     initExtra = ''
+      
+      path=("${config.home.homeDirectory}/.local/bin" "/Applications/VirtualBox.app/Contents/MacOS" "/Applications/Parallels Desktop.app/Contents/MacOS"  $path)
+
       source <(kubectl completion zsh)
       complete -F __start_kubectl k
 
