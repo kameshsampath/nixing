@@ -16,5 +16,6 @@
     stern
     minikube
     kameshsampath.kubectl-aliases
+    k9s
   ];
 }
