@@ -21,5 +21,6 @@
     tree
     yamllint
     terraform
+    vagrant
   ];
 }

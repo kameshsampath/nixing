@@ -14,6 +14,10 @@
         disabled = true;
       };
 
+      kubernetes = {
+        disabled = false;
+      };
+
       character = {
         success_symbol = "[❯](bold green)";
         error_symbol = "[✖](bold red)";
